@@ -1,0 +1,8 @@
+selenium==4.22.0
+requests==2.32.3
+pytest==8.2.2
+allure-pytest==2.15.0
+python-dotenv==1.0.1
+black==24.4.2
+flake8==7.1.0
+isort==5.13.2
