@@ -1,25 +1,35 @@
-# tests/test_api.py
-import allure
-import pytest
-from api.client import APIClient
+import requests
+from configs.env_config import API_BASE_URL, AUTH_TOKEN
+from configs.test_data import VALID_EMAIL, VALID_PASSWORD
 
-@allure.feature("API")
-@allure.story("Получение списка пользователей")
-@allure.title("GET /users возвращает 200 и список")
-@pytest.mark.api
-def test_get_users(api_client: APIClient):
-    response = api_client.get("/users")
+def test_get_events():
+    url = f"{API_BASE_URL}/events"
+    response = requests.get(url)
     assert response.status_code == 200
-    assert isinstance(response.json(), list)
+    data = response.json()
+    assert isinstance(data, list)
 
-@allure.feature("API")
-@allure.story("Создание нового пользователя")
-@allure.title("POST /users создаёт пользователя и возвращает 201")
-@pytest.mark.api
-def test_create_user(api_client: APIClient):
-    payload = {"name": "Test User", "email": "testuser@example.com"}
-    response = api_client.post("/users", data=payload)
+def test_login_api():
+    url = f"{API_BASE_URL}/login"
+    payload = {"email": VALID_EMAIL, "password": VALID_PASSWORD}
+    response = requests.post(url, json=payload)
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "token" in json_response
+
+def test_create_event():
+    url = f"{API_BASE_URL}/events"
+    headers = {"Authorization": f"Bearer {AUTH_TOKEN}"}
+    payload = {"name": "Test Event"}
+    response = requests.post(url, headers=headers, json=payload)
     assert response.status_code == 201
     data = response.json()
-    assert data["name"] == payload["name"]
-    assert data["email"] == payload["email"]
+    assert data["name"] == "Test Event"
+
+def test_delete_event():
+
+    event_id = 1
+    url = f"{API_BASE_URL}/events/{event_id}"
+    headers = {"Authorization": f"Bearer {AUTH_TOKEN}"}
+    response = requests.delete(url, headers=headers)
+    assert response.status_code == 204
