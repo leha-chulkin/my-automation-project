@@ -9,7 +9,6 @@ from faker import Faker
 
 @dataclass
 class UserData:
-    """Данные тестового пользователя."""
     email: str
     password: str
     first_name: str
