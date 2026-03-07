@@ -1,79 +1,18 @@
-Проект тестирования Авиасейлс - Личные события
-Описание проекта
-Проект автоматизированного тестирования функционала "Личные события" на сайте Авиасейлс.
-Включает UI и API тесты.
- Структура проекта
-aviasales_testing/
-├── .gitignore
-├── requirements.txt
-├── README.md
-├── config/
-│ ├── __init__.py
-│ ├── settings.py
-│ └── test_data.py
-├── pages/
-│ ├── __init__.py
-│ ├── base_page.py
-│ ├── login_page.py
-│ ├── main_page.py
-│ └── personal_events_page.py
-├── api/
-│ ├── __init__.py
-│ ├── auth_api.py
-│ └── events_api.py
-├── tests/
-│ ├── __init__.py
-│ ├── conftest.py
-│ ├── test_ui.py
-│ └── test_api.py
-├── utils/
-│ ├── __init__.py
-│ ├── helpers.py
-│ └── allure_utils.py
-└── reports/
-└── allure-results/
-Установка и запуск
-1. Установка зависимостей
+# Проект автоматизации тестирования
+
+Данный проект автоматизирует UI- и API-тесты для проекта XYZ.
+
+## Структура проекта
+
+- `page_objects/` — Page Object модели страниц
+- `tests/` — тестовые сценарии
+- `configs/` — настройки окружения и тестовые данные
+- `utils/` — вспомогательные функции
+- `main.py` — запуск тестов по режимам
+
+## Как запустить
+
+- Установите зависимости:
+
+```bash
 pip install -r requirements.txt
-2. Настройка окружения
-Создайте файл `.env` в корне проекта:
-AVIASALES_URL=https://www.aviasales.ru
-TEST_EMAIL=your_test_email@temp-mail.org
-TEST_PASSWORD=your_test_password
-API_BASE_URL=https://api.aviasales.ru
-3. Запуск тестов
-#### Запуск всех тестов:
-pytest --alluredir=reports/allure-results
-#### Запуск только UI-тестов:
-pytest tests/test_ui.py --alluredir=reports/allure-results
-#### Запуск только API-тестов:
-pytest tests/test_api.py --alluredir=reports/allure-results
-#### Генерация отчета Allure:
-allure serve reports/allure-results
-Тестовые сценарии
-UI-тесты (5+):
-1. Авторизация пользователя
-2. Создание личного события
-3. Редактирование личного события
-4. Удаление личного события
-5. Просмотр списка личных событий
-6. Фильтрация личных событий
-API-тесты (5+):
-1. Авторизация через API
-2. Создание события через API
-3. Получение списка событий
-4. Обновление события
-5. Удаление события
-6. Валидация данных события
-Технологии
-• Python 3.8+
-• Selenium WebDriver
-• Requests
-• Pytest
-• Allure
-• Page Object Pattern
-Примечания
-• Для тестирования используйте тестовые аккаунты
-• Все чувствительные данные вынесены в конфигурационные файлы
-• Проект соответствует PEP8
-• Используются линтеры: flake8, black, isort

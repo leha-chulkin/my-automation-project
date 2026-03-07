@@ -1,4 +1,5 @@
 # Python
+*.pyc
 __pycache__/
 *.py[cod]
 *$py.class
@@ -68,8 +69,4 @@ msedgedriver.exe
 # Logs
 *.log
 logs/
-
-# Temp files
-temp/
-tmp/
 .vs/
